@@ -26,7 +26,7 @@ public class TileManager {
         File[] allFiles = path.listFiles();
 
         for (int i = 0; i < tile.length; i++) {
-            try{
+            try {
                 tile[i] = new Tile();
                 tile[i].image = ImageIO.read(allFiles[i]);
             } catch (IOException e) {
@@ -153,5 +153,34 @@ public class TileManager {
         row = row - 2;
         if(col >= 0 && col < gp.maxScreenCol && row >= 0 && row < gp.maxScreenRow)
             mapTileNum[col][row] = tile2Edit;
+    }
+
+    public void saveMap() {
+
+        try {
+            BufferedWriter wr = new BufferedWriter(new FileWriter("res"+gp.mapPath));
+
+            int col = 0;
+            int row = 0;
+
+            while(col < gp.maxScreenCol && row < gp.maxScreenRow) {
+
+
+                while(col < gp.maxScreenCol) {
+                    wr.write(String.valueOf(mapTileNum[col][row]));
+                    wr.write(" ");
+                    col++;
+                }
+                if(col == gp.maxScreenCol) {
+                    wr.write("\n");
+                    col = 0;
+                    row++;
+                }
+            }
+            wr.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

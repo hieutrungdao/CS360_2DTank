@@ -71,7 +71,7 @@ public class Bot extends Entity {
 
             int fire = random.nextInt(100);
 
-            if(fire < 75) attack();
+            if(fire < gp.botFireRate) attack();
 
             actionCounter = 0;
         }

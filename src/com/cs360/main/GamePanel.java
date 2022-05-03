@@ -49,6 +49,10 @@ public class GamePanel extends JPanel implements Runnable{
     public final int winState = 3;
     public final int loseState = 4;
     public final int editState = 5;
+    public final int selectMapState = 6;
+    public final int selectHardState = 7;
+
+    public int botFireRate = 75;
 
     boolean delayOn = false;
     int delayCounter = 0;
@@ -170,7 +174,9 @@ public class GamePanel extends JPanel implements Runnable{
             drawStart = System.nanoTime();
         }
 
-        if (gameState == menuState) {
+        if (gameState == menuState
+                || gameState == selectMapState
+                || gameState == selectHardState) {
 
             ui.draw(g2);
 

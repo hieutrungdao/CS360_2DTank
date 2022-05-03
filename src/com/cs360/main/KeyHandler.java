@@ -45,6 +45,11 @@ public class KeyHandler implements KeyListener {
 
         else if (gp.gameState == gp.editState)
             editState(code);
+
+        else if (gp.gameState == gp.selectMapState)
+            selectMapState(code);
+        else if (gp.gameState == gp.selectHardState)
+            selectHardState(code);
     }
 
     @Override
@@ -77,12 +82,12 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_W) {
             gp.ui.cmdNum--;
             if (gp.ui.cmdNum < 0) {
-                gp.ui.cmdNum = 2;
+                gp.ui.cmdNum = 3;
             }
         }
         if (code == KeyEvent.VK_S) {
             gp.ui.cmdNum++;
-            if (gp.ui.cmdNum > 2) {
+            if (gp.ui.cmdNum > 3) {
                 gp.ui.cmdNum = 0;
             }
         }
@@ -95,7 +100,8 @@ public class KeyHandler implements KeyListener {
                 gp.playDelayEffect();
             }
             if (gp.ui.cmdNum == 1) {
-
+                gp.gameState = gp.selectMapState;
+                gp.ui.cmdNum = 0;
             }
             if (gp.ui.cmdNum == 2) {
                 gp.gameState = gp.editState;
@@ -103,6 +109,39 @@ public class KeyHandler implements KeyListener {
             if (gp.ui.cmdNum == 3) {
                 System.exit(0);
             }
+        }
+
+    }
+
+    public void selectHardState(int code) {
+
+        if (code == KeyEvent.VK_W) {
+            gp.ui.cmdNum--;
+            if (gp.ui.cmdNum < 0) {
+                gp.ui.cmdNum = 3;
+            }
+        }
+        if (code == KeyEvent.VK_S) {
+            gp.ui.cmdNum++;
+            if (gp.ui.cmdNum > 3) {
+                gp.ui.cmdNum = 0;
+            }
+        }
+        if (code == KeyEvent.VK_ENTER) {
+            if (gp.ui.cmdNum == 3) {
+                gp.gameState = gp.menuState;
+                gp.ui.cmdNum = 0;
+            }
+            else {
+                gp.mapPath = "/map/map0"+gp.ui.cmdNum+".txt";
+                gp.tileM.loadMap(gp.mapPath);
+                gp.gameState = gp.menuState;
+                gp.ui.cmdNum = 0;
+            }
+        }
+        if(code == KeyEvent.VK_ESCAPE) {
+            gp.gameState = gp.menuState;
+            gp.ui.cmdNum = 0;
         }
 
     }
@@ -157,8 +196,42 @@ public class KeyHandler implements KeyListener {
         }
     }
 
+    public void selectMapState(int code) {
+
+        if (code == KeyEvent.VK_W) {
+            gp.ui.cmdNum--;
+            if (gp.ui.cmdNum < 0) {
+                gp.ui.cmdNum = 3;
+            }
+        }
+        if (code == KeyEvent.VK_S) {
+            gp.ui.cmdNum++;
+            if (gp.ui.cmdNum > 3) {
+                gp.ui.cmdNum = 0;
+            }
+        }
+        if (code == KeyEvent.VK_ENTER) {
+            if (gp.ui.cmdNum == 3) {
+                gp.gameState = gp.menuState;
+                gp.ui.cmdNum = 1;
+            }
+            else {
+                gp.mapPath = "/map/map0"+gp.ui.cmdNum+".txt";
+                gp.tileM.loadMap(gp.mapPath);
+                gp.gameState = gp.menuState;
+                gp.ui.cmdNum = 1;
+            }
+        }
+        if(code == KeyEvent.VK_ESCAPE) {
+            gp.gameState = gp.menuState;
+            gp.ui.cmdNum = 1;
+        }
+
+    }
+
     public void editState(int code) {
         if(code == KeyEvent.VK_ESCAPE) {
+            gp.tileM.saveMap();
             gp.gameState = gp.menuState;
         }
     }
