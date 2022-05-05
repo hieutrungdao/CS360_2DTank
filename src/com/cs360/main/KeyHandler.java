@@ -93,11 +93,7 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_ENTER) {
             if (gp.ui.cmdNum == 0) {
-                gp.gameState = gp.playState;
-                gp.stopMusic();
-                gp.playMusic(1);
-                gp.playSoundEffect(2);
-                gp.playDelayEffect();
+                gp.gameState = gp.selectHardState;
             }
             if (gp.ui.cmdNum == 1) {
                 gp.gameState = gp.selectMapState;
@@ -111,6 +107,15 @@ public class KeyHandler implements KeyListener {
             }
         }
 
+    }
+
+    public void startGame() {
+        gp.aSetter.setGame(gp.objPath);
+        gp.gameState = gp.playState;
+        gp.stopMusic();
+        gp.playMusic(1);
+        gp.playSoundEffect(2);
+        gp.playDelayEffect();
     }
 
     public void selectHardState(int code) {
@@ -131,12 +136,18 @@ public class KeyHandler implements KeyListener {
             if (gp.ui.cmdNum == 3) {
                 gp.gameState = gp.menuState;
                 gp.ui.cmdNum = 0;
-            }
-            else {
-                gp.mapPath = "/map/map0"+gp.ui.cmdNum+".txt";
-                gp.tileM.loadMap(gp.mapPath);
-                gp.gameState = gp.menuState;
-                gp.ui.cmdNum = 0;
+            } else if (gp.ui.cmdNum == 0) {
+                startGame();
+            } else if (gp.ui.cmdNum == 1) {
+                gp.botSpeed = 3;
+                gp.botFireRate = 60;
+                gp.player.healthPoint = 2;
+                startGame();
+            } else if (gp.ui.cmdNum == 2) {
+                gp.botSpeed = 4;
+                gp.botFireRate = 80;
+                gp.player.healthPoint = 1;
+                startGame();
             }
         }
         if(code == KeyEvent.VK_ESCAPE) {
@@ -160,19 +171,14 @@ public class KeyHandler implements KeyListener {
             rightPressed = true;
         if(code == KeyEvent.VK_P)
             gp.gameState = gp.pauseState;
-        if(code == KeyEvent.VK_ESCAPE) {
-            gp.gameState = gp.menuState;
-            gp.stopMusic();
-            gp.playMusic(0);
-        }
+//        if(code == KeyEvent.VK_ESCAPE) {
+//            gp.gameState = gp.menuState;
+//            gp.stopMusic();
+//            gp.playMusic(0);
+//        }
 
         if(code == KeyEvent.VK_T) {
-            if (showDebugText == true) {
-                showDebugText = false;
-            }
-            else if (showDebugText == false) {
-                showDebugText = true;
-            }
+            showDebugText = !showDebugText;
         }
 
         if (code == KeyEvent.VK_R) {

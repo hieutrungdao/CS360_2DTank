@@ -34,15 +34,17 @@ public class Player extends Entity{
         speed = 3;
         direction = "down";
         color = "red";
-        healthPoint = 2;
+        healthPoint = 3;
 
     }
 
     public void getPlayerImage() {
+
             up = setup("/tank/tank_red_up.png");
             down = setup("/tank/tank_red_down.png");
             left = setup("/tank/tank_red_left.png");
             right = setup("/tank/tank_red_right.png");
+
     }
 
 

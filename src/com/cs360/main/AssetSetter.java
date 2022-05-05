@@ -42,8 +42,8 @@ public class AssetSetter {
                     }
                     case 1 -> {
                         gp.obj[objID] = new Fence();
-                        gp.obj[objID].x = 200;
-                        gp.obj[objID].y = 200;
+                        gp.obj[objID].x = x;
+                        gp.obj[objID].y = y;
                         objID++;
                     }
                     case 2 -> {

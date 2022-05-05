@@ -9,7 +9,6 @@ import com.cs360.object.GameObj;
 import javax.swing.JPanel;
 
 import java.awt.*;
-import java.util.Arrays;
 
 public class GamePanel extends JPanel implements Runnable{
 
@@ -21,26 +20,27 @@ public class GamePanel extends JPanel implements Runnable{
 
     public final int FPS = 60;
 
-    public String mapPath = "/map/map02.txt";
-    public String objPath = "/map/obj00.txt";
+    public String mapPath = "/map/map00.txt"; // Đường dẫn mặc định để tải map
+    public String objPath = "/map/obj00.txt"; // Đường dẫn mặc định để tải object
 
     Thread gameThread;
+
     KeyHandler keyH = new KeyHandler(this);
     MouseHandler mouseH = new MouseHandler(this);
+    TileManager tileM = new TileManager(this);
     Sound music = new Sound();
     Sound effect = new Sound();
-    TileManager tileM = new TileManager(this);
 
     public UI ui = new UI(this);
     public EffectManager effectM = new EffectManager(this);
-    public CollisionChecker cChecker = new CollisionChecker(this);
-    public AssetSetter aSetter = new AssetSetter(this);
+    public CollisionChecker cChecker = new CollisionChecker(this); // Kiểm tra các vật thể giao nhau
+    public AssetSetter aSetter = new AssetSetter(this); // Khởi tạo bot và object
 
     public Player player = new Player(this, keyH);
     public GameObj[] obj = new GameObj[64];
     public Bot[] bot = new Bot[16];
     public Bullet[] bullet = new Bullet[128];
-    public int bulletIndex = 0;
+    public int bulletIndex = 0; // Dùng khi tạo bullet mới thì bulletIndex++
 
     public int gameState;
     public final int menuState = 0;
@@ -52,8 +52,11 @@ public class GamePanel extends JPanel implements Runnable{
     public final int selectMapState = 6;
     public final int selectHardState = 7;
 
+    // Tốc độ bắn và tốc độ chạy cho bot tùy theo độ khó
     public int botFireRate = 75;
+    public int botSpeed = 2;
 
+    // Delay cho sound
     boolean delayOn = false;
     int delayCounter = 0;
 
@@ -71,24 +74,18 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void setupGame() {
         tileM.loadMap(mapPath);
-        aSetter.setGame(objPath);
         playMusic(0);
         gameState = menuState;
     }
 
-
     public void startGameThread() {
-
         gameThread = new Thread(this);
         gameThread.start();
-
     }
-
-
 
     @Override
     public void run() {
-
+        // Update và vẽ lại màn hình mỗi 1/60 s
         double drawInterval = (double) 1000000000/FPS;
         double delta = 0;
         long lastTime = System.nanoTime();
@@ -124,6 +121,7 @@ public class GamePanel extends JPanel implements Runnable{
 
         if (gameState == playState) {
 
+            // Gọi method update cho tất cả các obj của game
             player.update();
 
             for (Bot item : bot) {
@@ -138,6 +136,7 @@ public class GamePanel extends JPanel implements Runnable{
                 }
             }
 
+            // Chạy sound effect đang được delay
             if(delayOn) {
                 delayCounter++;
                 if (delayCounter > FPS) {
@@ -148,22 +147,12 @@ public class GamePanel extends JPanel implements Runnable{
             }
 
         }
-        if (gameState == pauseState) {
-
-        }
-        if (gameState == winState) {
-
-        }
-        if (gameState == loseState) {
-
-        }
-        if (gameState == editState) {
-
-        }
 
     }
 
     public void paintComponent(Graphics g){
+
+        // Vẽ lại màn hình sau khi update
 
         super.paintComponent(g);
 

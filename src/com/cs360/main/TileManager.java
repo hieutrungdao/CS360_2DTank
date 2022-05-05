@@ -3,6 +3,7 @@ import com.cs360.tile.Tile;
 
 import java.awt.*;
 import java.io.*;
+import java.util.Objects;
 import javax.imageio.ImageIO;
 
 public class TileManager {
@@ -28,7 +29,7 @@ public class TileManager {
         for (int i = 0; i < tile.length; i++) {
             try {
                 tile[i] = new Tile();
-                tile[i].image = ImageIO.read(allFiles[i]);
+                tile[i].image = ImageIO.read(Objects.requireNonNull(allFiles)[i]);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -39,7 +40,7 @@ public class TileManager {
 
         try {
             InputStream is = getClass().getResourceAsStream(filePath);
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            BufferedReader br = new BufferedReader(new InputStreamReader(Objects.requireNonNull(is)));
 
             int col = 0;
             int row = 0;
@@ -111,7 +112,7 @@ public class TileManager {
             }
         }
 
-        x = 1 * tileSize ;
+        x = tileSize ;
         y = 14 * tileSize;
 
         g2.setFont(g2.getFont().deriveFont(30F));

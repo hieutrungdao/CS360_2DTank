@@ -28,7 +28,7 @@ public class Bot extends Entity {
 
     public void setDefaultValues() {
 
-        speed = 3;
+        speed = gp.botSpeed;
         direction = "down";
         color = "dark";
         healthPoint = 2;
