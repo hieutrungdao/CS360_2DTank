@@ -9,6 +9,7 @@ import com.cs360.object.GameObj;
 import javax.swing.JPanel;
 
 import java.awt.*;
+import java.util.Objects;
 
 public class GamePanel extends JPanel implements Runnable{
 
@@ -52,6 +53,9 @@ public class GamePanel extends JPanel implements Runnable{
     public final int selectMapState = 6;
     public final int selectHardState = 7;
 
+    // Mac OS dùng file txt khác so với Windows
+    public boolean systemIsMacOS = false;
+
     // Tốc độ bắn và tốc độ chạy cho bot tùy theo độ khó
     public int botFireRate = 75;
     public int botSpeed = 2;
@@ -73,9 +77,13 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void setupGame() {
+
+        if(Objects.equals(System.getProperty("os.name"), "Mac OS X")) systemIsMacOS = true;
+
         tileM.loadMap(mapPath);
         playMusic(0);
         gameState = menuState;
+        
     }
 
     public void startGameThread() {

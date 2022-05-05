@@ -38,6 +38,10 @@ public class TileManager {
 
     public void loadMap(String filePath) {
 
+        if (gp.systemIsMacOS) {
+            filePath = filePath.substring(0, filePath.length()-4) + "mac.txt";
+        }
+
         try {
             InputStream is = getClass().getResourceAsStream(filePath);
             BufferedReader br = new BufferedReader(new InputStreamReader(Objects.requireNonNull(is)));
