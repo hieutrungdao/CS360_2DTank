@@ -57,21 +57,21 @@ public class UI {
         g2.setFont(kenvector_future);
         g2.setColor(Color.white);
 
-        if (gp.gameState == gp.menuState)
+        if (gp.getGameState() == gp.menuState)
             drawMenuScreen();
-        if(gp.gameState == gp.editState)
+        if(gp.getGameState() == gp.editState)
             drawEditMapScreen();
-        if (gp.gameState == gp.playState)
+        if (gp.getGameState() == gp.playState)
             drawPlayScreen();
-        if (gp.gameState == gp.pauseState)
+        if (gp.getGameState() == gp.pauseState)
             drawPauseScreen();
-        if (gp.gameState == gp.winState)
+        if (gp.getGameState() == gp.winState)
             drawFinishScreen();
-        if (gp.gameState == gp.loseState)
+        if (gp.getGameState() == gp.loseState)
             drawLoseScreen();
-        if (gp.gameState == gp.selectMapState)
+        if (gp.getGameState() == gp.selectMapState)
             drawSelectMapScreen();
-        if (gp.gameState == gp.selectHardState)
+        if (gp.getGameState() == gp.selectHardState)
             drawSelectHardScreen();
     }
 

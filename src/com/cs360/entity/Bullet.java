@@ -86,8 +86,7 @@ public class Bullet extends Entity {
                         }
                     }
                     if (empty) {
-                        gp.gameState = gp.winState;
-                        gp.playSoundEffect(4);
+                        gp.setGameState(gp.winState);
                     }
                 } else {
                     gp.effectM.addExplosion(x+solidArea.width/2, y+solidArea.height/2, false);
@@ -98,8 +97,7 @@ public class Bullet extends Entity {
                 gp.player.healthPoint--;
                 if (gp.player.healthPoint == 0) {
                     gp.effectM.addExplosion(x+solidArea.width/2, y+solidArea.height/2, true);
-                    gp.gameState = gp.loseState;
-                    gp.playSoundEffect(5);
+                    gp.setGameState(gp.loseState);
                 } else {
                     gp.effectM.addExplosion(x+solidArea.width/2, y+solidArea.height/2, false);
                 }

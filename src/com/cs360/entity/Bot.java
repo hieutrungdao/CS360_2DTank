@@ -9,6 +9,7 @@ public class Bot extends Entity {
 
     int actionCounter = 0;
     int actionNum = 1;
+    int fireRate;
 
     public Bot(GamePanel gp, int id) {
 
@@ -28,11 +29,19 @@ public class Bot extends Entity {
 
     public void setDefaultValues() {
 
-        speed = gp.botSpeed;
         direction = "down";
         color = "dark";
         healthPoint = 2;
-
+        if (gp.getHardMode() == 0){
+            speed = 2;
+            fireRate = 40;
+        } else if (gp.getHardMode() == 1) {
+            speed = 3;
+            fireRate = 60;
+        } else if (gp.getHardMode() == 2) {
+            speed = 4;
+            fireRate = 80;
+        }
     }
 
     public void getBotImage() {
@@ -71,7 +80,7 @@ public class Bot extends Entity {
 
             int fire = random.nextInt(100);
 
-            if(fire < gp.botFireRate) attack();
+            if(fire < fireRate) attack();
 
             actionCounter = 0;
         }

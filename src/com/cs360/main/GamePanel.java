@@ -43,7 +43,8 @@ public class GamePanel extends JPanel implements Runnable{
     public Bullet[] bullet = new Bullet[128];
     public int bulletIndex = 0; // Dùng khi tạo bullet mới thì bulletIndex++
 
-    public int gameState;
+    // Thay đổi game state sẽ thay đổi ui, draw, keyH, ..
+    private int gameState;
     public final int menuState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
@@ -53,17 +54,31 @@ public class GamePanel extends JPanel implements Runnable{
     public final int selectMapState = 6;
     public final int selectHardState = 7;
 
-    // Mac OS dùng file txt khác so với Windows
-    public boolean systemIsMacOS = false;
-
     // Tốc độ bắn và tốc độ chạy cho bot tùy theo độ khó
-    public int botFireRate = 75;
-    public int botSpeed = 2;
+    private int hardMode = 1;
 
     // Delay cho sound
-    boolean delayOn = false;
-    int delayCounter = 0;
+    private boolean delayOn = false;
+    private int delayCounter = 0;
 
+    // macOS dùng file txt khác so với Windows
+    public boolean systemIsMacOS = false;
+
+    public void setGameState(int gameState) {
+        this.gameState = gameState;
+    }
+
+    public int getGameState(){
+        return gameState;
+    }
+
+    public void setHardMode(int hardMode){
+        this.hardMode = hardMode;
+    }
+
+    public int getHardMode() {
+        return hardMode;
+    }
 
     public GamePanel() {
 
@@ -155,6 +170,14 @@ public class GamePanel extends JPanel implements Runnable{
             }
 
         }
+
+        if (gameState == winState) {
+            playSoundEffect(4);
+        }
+        if (gameState == loseState){
+            playSoundEffect(5);
+        }
+
 
     }
 
