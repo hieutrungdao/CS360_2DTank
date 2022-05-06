@@ -60,6 +60,7 @@ public class GamePanel extends JPanel implements Runnable{
     // Delay cho sound
     private boolean delayOn = false;
     private int delayCounter = 0;
+    private boolean endSound = true;
 
     // macOS dùng file txt khác so với Windows
     public boolean systemIsMacOS = false;
@@ -170,15 +171,15 @@ public class GamePanel extends JPanel implements Runnable{
             }
 
         }
-
-        if (gameState == winState) {
-            playSoundEffect(4);
+        if (endSound){
+            if (gameState == winState) {
+                playSoundEffect(4);
+            }
+            if (gameState == loseState){
+                playSoundEffect(5);
+            }
+            endSound = !endSound;
         }
-        if (gameState == loseState){
-            playSoundEffect(5);
-        }
-
-
     }
 
     public void paintComponent(Graphics g){
@@ -260,8 +261,8 @@ public class GamePanel extends JPanel implements Runnable{
     public void playMusic(int i) {
 
         music.setFile(i);
-        music.play();
         music.setVolume((float)0.1);
+        music.play();
         music.loop();
 
     }
