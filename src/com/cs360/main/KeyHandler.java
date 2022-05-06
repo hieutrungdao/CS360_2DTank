@@ -162,10 +162,8 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_P)
             gp.setGameState(gp.pauseState);
         if(code == KeyEvent.VK_ESCAPE) {
-            gp.setGameState(gp.pauseState);
-//            gp.setGameState(gp.menuState);
-//            gp.stopMusic();
-//            gp.playMusic(0);
+//            gp.setGameState(gp.pauseState);
+            gp.resetGame();
         }
 
         if(code == KeyEvent.VK_T) {

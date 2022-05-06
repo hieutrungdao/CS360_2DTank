@@ -93,7 +93,7 @@ public class GamePanel extends JPanel implements Runnable{
         playMusic(0);
         setGameState(menuState);
         aSetter.resetGame();
-        
+
         player = new Player(this, keyH);
         obj = new GameObj[64];
         bot = new Bot[16];

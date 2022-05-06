@@ -31,14 +31,16 @@ public class Bot extends Entity {
 
         direction = "down";
         color = "dark";
-        healthPoint = 2;
         if (gp.getHardMode() == 0){
+            healthPoint = 2;
             speed = 2;
             fireRate = 40;
         } else if (gp.getHardMode() == 1) {
+            healthPoint = 3;
             speed = 3;
             fireRate = 60;
         } else if (gp.getHardMode() == 2) {
+            healthPoint = 4;
             speed = 4;
             fireRate = 80;
         }
