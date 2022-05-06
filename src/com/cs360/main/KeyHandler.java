@@ -33,7 +33,6 @@ public class KeyHandler implements KeyListener {
 
         if (gp.getGameState() == gp.menuState)
             menuState(code);
-
         else if (gp.getGameState() == gp.playState)
             playState(code);
 
@@ -110,9 +109,9 @@ public class KeyHandler implements KeyListener {
     }
 
     public void startGame(int hardMode) {
-        gp.setGameState(hardMode);
-        gp.aSetter.setGame(gp.objPath);
         gp.setGameState(gp.playState);
+        gp.setHardMode(hardMode);
+        gp.aSetter.setGame(gp.objPath);
         gp.stopMusic();
         gp.playMusic(1);
         gp.playSoundEffect(2);
@@ -162,11 +161,12 @@ public class KeyHandler implements KeyListener {
             rightPressed = true;
         if(code == KeyEvent.VK_P)
             gp.setGameState(gp.pauseState);
-//        if(code == KeyEvent.VK_ESCAPE) {
-//            gp.gameState = gp.menuState;
+        if(code == KeyEvent.VK_ESCAPE) {
+            gp.setGameState(gp.pauseState);
+//            gp.setGameState(gp.menuState);
 //            gp.stopMusic();
 //            gp.playMusic(0);
-//        }
+        }
 
         if(code == KeyEvent.VK_T) {
             showDebugText = !showDebugText;
@@ -181,9 +181,10 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_P)
             gp.setGameState(gp.playState);
         if(code == KeyEvent.VK_ESCAPE) {
-            gp.setGameState(gp.menuState);
-            gp.stopMusic();
-            gp.playMusic(0);
+            gp.setGameState(gp.playState);
+//            gp.setGameState(gp.menuState);
+//            gp.stopMusic();
+//            gp.playMusic(0);
         }
     }
 
@@ -208,14 +209,11 @@ public class KeyHandler implements KeyListener {
             }
         }
         if (code == KeyEvent.VK_ENTER) {
-            if (gp.ui.cmdNum == 3) {
-                gp.ui.cmdNum = 1;
-            }
-            else {
-                gp.mapPath = "/map/map0"+gp.ui.cmdNum+".txt";
+            if (gp.ui.cmdNum != 3) {
+                gp.mapPath = "/map/map0" + gp.ui.cmdNum + ".txt";
                 gp.tileM.loadMap(gp.mapPath);
-                gp.ui.cmdNum = 1;
             }
+            gp.ui.cmdNum = 1;
             gp.setGameState(gp.menuState);
         }
         if(code == KeyEvent.VK_ESCAPE) {

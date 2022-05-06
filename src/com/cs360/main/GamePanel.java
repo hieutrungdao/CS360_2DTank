@@ -75,6 +75,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void setHardMode(int hardMode){
         this.hardMode = hardMode;
+        player.setHardMode(hardMode);
     }
 
     public int getHardMode() {

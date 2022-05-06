@@ -38,6 +38,10 @@ public class Player extends Entity{
 
     }
 
+    public void setHardMode(int hardMode) {
+        this.healthPoint = 3 - hardMode;
+    }
+
     public void getPlayerImage() {
 
             up = setup("/tank/tank_red_up.png");
@@ -46,7 +50,6 @@ public class Player extends Entity{
             right = setup("/tank/tank_red_right.png");
 
     }
-
 
 
     public void update() {
@@ -74,4 +77,5 @@ public class Player extends Entity{
         }
 
     }
+
 }
