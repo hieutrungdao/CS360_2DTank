@@ -73,4 +73,9 @@ public class AssetSetter {
 
     }
 
+    public void resetGame() {
+        objID = 0;
+        botID = 0;
+    }
+
 }

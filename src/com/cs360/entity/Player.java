@@ -44,10 +44,10 @@ public class Player extends Entity{
 
     public void getPlayerImage() {
 
-            up = setup("/tank/tank_red_up.png");
-            down = setup("/tank/tank_red_down.png");
-            left = setup("/tank/tank_red_left.png");
-            right = setup("/tank/tank_red_right.png");
+            up = loadImage("/tank/tank_red_up.png");
+            down = loadImage("/tank/tank_red_down.png");
+            left = loadImage("/tank/tank_red_left.png");
+            right = loadImage("/tank/tank_red_right.png");
 
     }
 

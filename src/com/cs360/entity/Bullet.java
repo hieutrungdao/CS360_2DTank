@@ -29,15 +29,15 @@ public class Bullet extends Entity {
 
     public void getBulletImage() {
         if (color.equals("red")){
-            up = setup("/bullet/bulletRed1_up.png");
-            down = setup("/bullet/bulletRed1_down.png");
-            left = setup("/bullet/bulletRed1_left.png");
-            right = setup("/bullet/bulletRed1_right.png");
+            up = loadImage("/bullet/bulletRed1_up.png");
+            down = loadImage("/bullet/bulletRed1_down.png");
+            left = loadImage("/bullet/bulletRed1_left.png");
+            right = loadImage("/bullet/bulletRed1_right.png");
         } else if (color.equals("dark")) {
-            up = setup("/bullet/bulletDark1_up.png");
-            down = setup("/bullet/bulletDark1_down.png");
-            left = setup("/bullet/bulletDark1_left.png");
-            right = setup("/bullet/bulletDark1_right.png");
+            up = loadImage("/bullet/bulletDark1_up.png");
+            down = loadImage("/bullet/bulletDark1_down.png");
+            left = loadImage("/bullet/bulletDark1_left.png");
+            right = loadImage("/bullet/bulletDark1_right.png");
         }
     }
 
@@ -71,23 +71,14 @@ public class Bullet extends Entity {
 
         collisionOn = false;
 
-        if(entity.id == 999) {
-            target = gp.cChecker.checkEntity(this, gp.bot);
-            if(target != 99){
+        if(entity.id == 999) { // Đạn do người chơi bắn (player.id = 99)
+            target = gp.cChecker.checkEntity(this, gp.bot); // check giao nhau giữa đạn và bot
+            if(target != 99){ // checkEntity return 99 nghĩa là viên đạn không giao với mục tiêu
                 gp.bot[target].healthPoint--;
                 if (gp.bot[target].healthPoint == 0) {
                     gp.bot[target] = null;
                     gp.effectM.addExplosion(x+solidArea.width/2, y+solidArea.height/2, true);
-                    boolean empty  = true;
-                    for (Bot value: gp.bot) {
-                        if (value != null) {
-                            empty = false;
-                            break;
-                        }
-                    }
-                    if (empty) {
-                        gp.setGameState(gp.winState);
-                    }
+                    gp.checkWinCondition(); // Kiểm tra xem có còn bot nào sống không. Nếu không change gameState to winState
                 } else {
                     gp.effectM.addExplosion(x+solidArea.width/2, y+solidArea.height/2, false);
                 }

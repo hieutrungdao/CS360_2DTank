@@ -60,27 +60,12 @@ public class GamePanel extends JPanel implements Runnable{
     // Delay cho sound
     private boolean delayOn = false;
     private int delayCounter = 0;
+
     private boolean endSound = true;
 
-    // macOS dùng file txt khác so với Windows
+    // macOS dùng file map txt khác với Windows
     public boolean systemIsMacOS = false;
 
-    public void setGameState(int gameState) {
-        this.gameState = gameState;
-    }
-
-    public int getGameState(){
-        return gameState;
-    }
-
-    public void setHardMode(int hardMode){
-        this.hardMode = hardMode;
-        player.setHardMode(hardMode);
-    }
-
-    public int getHardMode() {
-        return hardMode;
-    }
 
     public GamePanel() {
 
@@ -96,11 +81,25 @@ public class GamePanel extends JPanel implements Runnable{
     public void setupGame() {
 
         if(Objects.equals(System.getProperty("os.name"), "Mac OS X")) systemIsMacOS = true;
-
         tileM.loadMap(mapPath);
         playMusic(0);
         gameState = menuState;
         
+    }
+
+    public void resetGame() {
+
+        stopMusic();
+        playMusic(0);
+        setGameState(menuState);
+        aSetter.resetGame();
+        
+        player = new Player(this, keyH);
+        obj = new GameObj[64];
+        bot = new Bot[16];
+        bullet = new Bullet[128];
+        bulletIndex = 0; // Dùng khi tạo bullet mới thì bulletIndex++
+
     }
 
     public void startGameThread() {
@@ -179,7 +178,7 @@ public class GamePanel extends JPanel implements Runnable{
             if (gameState == loseState){
                 playSoundEffect(5);
             }
-            endSound = !endSound;
+            endSound = false;
         }
     }
 
@@ -281,5 +280,35 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void playDelayEffect() {
         delayOn = true;
+    }
+
+    public void checkWinCondition() {
+        boolean empty  = true;
+        for (Bot value: bot) {
+            if (value != null) {
+                empty = false;
+                break;
+            }
+        }
+        if (empty) {
+            setGameState(winState);
+        }
+    }
+
+    public void setGameState(int gameState) {
+        this.gameState = gameState;
+    }
+
+    public int getGameState(){
+        return gameState;
+    }
+
+    public void setHardMode(int hardMode){
+        this.hardMode = hardMode;
+        player.setHardMode(hardMode);
+    }
+
+    public int getHardMode() {
+        return hardMode;
     }
 }

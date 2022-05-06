@@ -46,10 +46,10 @@ public class Bot extends Entity {
 
     public void getBotImage() {
 
-        up = setup("/tank/tank_dark_up.png");
-        down = setup("/tank/tank_dark_down.png");
-        left = setup("/tank/tank_dark_left.png");
-        right = setup("/tank/tank_dark_right.png");
+        up = loadImage("/tank/tank_dark_up.png");
+        down = loadImage("/tank/tank_dark_down.png");
+        left = loadImage("/tank/tank_dark_left.png");
+        right = loadImage("/tank/tank_dark_right.png");
 
     }
 

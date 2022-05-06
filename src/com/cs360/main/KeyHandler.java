@@ -190,7 +190,8 @@ public class KeyHandler implements KeyListener {
 
     public void finishState(int code) {
         if(code == KeyEvent.VK_ESCAPE) {
-            System.exit(0);
+            gp.resetGame();
+//            System.exit(0);
         }
     }
 

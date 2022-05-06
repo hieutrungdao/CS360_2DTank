@@ -53,7 +53,6 @@ public class Entity {
     }
 
     public void attack() {
-
         for (int i = 0; i <= gp.bulletIndex; i++) {
             if (i == gp.bulletIndex) {
                 gp.bulletIndex++;
@@ -66,7 +65,7 @@ public class Entity {
 
     }
 
-    public BufferedImage setup(String imagePath) {
+    public BufferedImage loadImage(String imagePath) {
 
         BufferedImage image = null;
 
