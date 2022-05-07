@@ -8,18 +8,16 @@ import java.awt.*;
 public class Bullet extends Entity {
 
     int bulletIndex;
-    Entity entity;
-    int target;
+    Entity shooter;
 
-
-    public Bullet(GamePanel gp, int bulletIndex, Entity entity) {
+    public Bullet(GamePanel gp, int bulletIndex, Entity shooter) {
 
         super(gp);
         this.bulletIndex = bulletIndex;
-        this.entity = entity;
-        this.color = entity.color;
+        this.shooter = shooter;
+        this.color = shooter.color;
 
-        direction = entity.direction;
+        direction = shooter.direction;
         speed = 10;
 
         getBulletImage();
@@ -47,20 +45,20 @@ public class Bullet extends Entity {
 
         switch (direction) {
             case "up" -> {
-                x = entity.x + entity.solidArea.width/2 - up.getWidth()/2;
-                y = entity.y;
+                x = shooter.x + shooter.solidArea.width/2 - up.getWidth()/2;
+                y = shooter.y;
             }
             case "down" -> {
-                x = entity.x + entity.solidArea.width/2 - down.getWidth()/2;
-                y = entity.y + entity.solidArea.height;
+                x = shooter.x + shooter.solidArea.width/2 - down.getWidth()/2;
+                y = shooter.y + shooter.solidArea.height;
             }
             case "left" -> {
-                x = entity.x;
-                y = entity.y + entity.solidArea.height/2 - left.getHeight()/2;
+                x = shooter.x;
+                y = shooter.y + shooter.solidArea.height/2 - left.getHeight()/2;
             }
             case "right" -> {
-                x = entity.x + entity.solidArea.width;
-                y = entity.y + entity.solidArea.height/2 - left.getHeight()/2;
+                x = shooter.x + shooter.solidArea.width;
+                y = shooter.y + shooter.solidArea.height/2 - left.getHeight()/2;
             }
         }
 
@@ -69,9 +67,10 @@ public class Bullet extends Entity {
 
     public void update() {
 
+        int target;
         collisionOn = false;
 
-        if(entity.id == 999) { // Đạn do người chơi bắn (player.id = 99)
+        if(shooter.id == 999) { // Đạn do người chơi bắn (player.id = 99)
             target = gp.cChecker.checkEntity(this, gp.bot); // check giao nhau giữa đạn và bot
             if(target != 99){ // checkEntity return 99 nghĩa là viên đạn không giao với mục tiêu
                 gp.bot[target].healthPoint--;

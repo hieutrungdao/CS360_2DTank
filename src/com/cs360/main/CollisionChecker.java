@@ -5,12 +5,13 @@ import com.cs360.entity.Entity;
 public class CollisionChecker {
 
     GamePanel gp;
-    int checkDistance = 6;
+    int checkDistance = 6; // offset khi check va chạm
 
     public CollisionChecker(GamePanel gp) {
         this.gp = gp;
     }
 
+    // kiểm tra va chạm với viền map
     public void checkMapBorder(Entity entity) {
 
         entity.solidArea.x = entity.x;
@@ -44,7 +45,7 @@ public class CollisionChecker {
         }
     }
 
-
+    // Kiểm tra va cham với các object
     public void checkObj(Entity entity) {
 
         for (int i = 0; i < gp.obj.length; i++) {

@@ -100,6 +100,8 @@ public class GamePanel extends JPanel implements Runnable{
         bullet = new Bullet[128];
         bulletIndex = 0; // Dùng khi tạo bullet mới thì bulletIndex++
 
+        endSound = true;
+
     }
 
     public void startGameThread() {
@@ -171,14 +173,16 @@ public class GamePanel extends JPanel implements Runnable{
             }
 
         }
+
         if (endSound){
             if (gameState == winState) {
                 playSoundEffect(4);
+                endSound = false;
             }
             if (gameState == loseState){
                 playSoundEffect(5);
+                endSound = false;
             }
-            endSound = false;
         }
     }
 
