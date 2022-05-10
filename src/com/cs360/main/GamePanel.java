@@ -41,7 +41,6 @@ public class GamePanel extends JPanel implements Runnable{
     public GameObj[] obj = new GameObj[64];
     public Bot[] bot = new Bot[16];
     public Bullet[] bullet = new Bullet[128];
-    public int bulletIndex = 0; // Dùng khi tạo bullet mới thì bulletIndex++
 
     // Thay đổi game state sẽ thay đổi ui, draw, keyH, ..
     private int gameState;
@@ -98,7 +97,6 @@ public class GamePanel extends JPanel implements Runnable{
         obj = new GameObj[64];
         bot = new Bot[16];
         bullet = new Bullet[128];
-        bulletIndex = 0; // Dùng khi tạo bullet mới thì bulletIndex++
 
         endSound = true;
 
