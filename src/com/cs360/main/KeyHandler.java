@@ -179,16 +179,12 @@ public class KeyHandler implements KeyListener {
             gp.setGameState(gp.playState);
         if(code == KeyEvent.VK_ESCAPE) {
             gp.setGameState(gp.playState);
-//            gp.setGameState(gp.menuState);
-//            gp.stopMusic();
-//            gp.playMusic(0);
         }
     }
 
     public void finishState(int code) {
         if(code == KeyEvent.VK_ESCAPE) {
             gp.resetGame();
-//            System.exit(0);
         }
     }
 

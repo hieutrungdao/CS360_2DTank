@@ -53,10 +53,7 @@ public class Entity {
     }
 
     public void attack() {
-        for (int i = 0; i <= gp.bulletIndex; i++) {
-            if (i == gp.bulletIndex) {
-                gp.bulletIndex++;
-            }
+        for (int i = 0; i < gp.bullet.length; i++) {
             if (gp.bullet[i] == null) {
                 gp.bullet[i] = new Bullet(gp, i, this);
                 break;
