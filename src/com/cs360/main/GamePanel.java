@@ -1,6 +1,5 @@
 package com.cs360.main;
 
-import com.cs360.effect.EffectManager;
 import com.cs360.entity.Bot;
 import com.cs360.entity.Bullet;
 import com.cs360.entity.Player;

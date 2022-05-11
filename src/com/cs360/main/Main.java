@@ -9,7 +9,7 @@ public class Main {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        window.setTitle("2D Tank");
+        window.setTitle("CS360 2D Tank");
 
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);

@@ -1,12 +1,13 @@
-package com.cs360.effect;
+package com.cs360.main;
 
-import com.cs360.main.GamePanel;
+import com.cs360.effect.Effect;
+import com.cs360.effect.Explosion;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class EffectManager {
-
+    
     GamePanel gp;
     Effect[] effects;
     int index = 0;

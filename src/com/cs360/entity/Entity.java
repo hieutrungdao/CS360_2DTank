@@ -52,16 +52,6 @@ public class Entity {
 
     }
 
-    public void attack() {
-        for (int i = 0; i < gp.bullet.length; i++) {
-            if (gp.bullet[i] == null) {
-                gp.bullet[i] = new Bullet(gp, i, this);
-                break;
-            }
-        }
-
-    }
-
     public BufferedImage loadImage(String imagePath) {
 
         BufferedImage image = null;
