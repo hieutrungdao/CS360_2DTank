@@ -3,7 +3,7 @@ package com.cs360.entity;
 import com.cs360.main.GamePanel;
 import com.cs360.main.KeyHandler;
 
-import java.awt.*;
+import java.awt.Rectangle;
 
 
 public class Player extends Entity {
