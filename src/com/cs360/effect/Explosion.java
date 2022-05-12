@@ -4,7 +4,10 @@ import java.awt.image.BufferedImage;
 
 public class Explosion extends Effect{
 
-    public Explosion(boolean smoke) {
+    public Explosion(int x, int y, boolean smoke) {
+
+        this.x = x;
+        this.y = y;
 
         images = new BufferedImage[5];
 

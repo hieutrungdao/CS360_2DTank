@@ -2,15 +2,15 @@ package com.cs360.main;
 
 import com.cs360.effect.Effect;
 import com.cs360.effect.Explosion;
+import com.cs360.entity.Bullet;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class EffectManager {
-    
+
     GamePanel gp;
     Effect[] effects;
-    int index = 0;
 
     public EffectManager(GamePanel gp) {
 
@@ -20,15 +20,14 @@ public class EffectManager {
     }
 
     public void addExplosion(int x, int y, boolean smoke){
-        if(smoke){
-            effects[index] = new Explosion(true);
-        } else {
-            effects[index] = new Explosion(false);
-        }
-        effects[index].x = x;
-        effects[index].y = y;
-        index++;
 
+        for (int i = 0; i < effects.length; i++) {
+            if (effects[i] == null) {
+                effects[i] = new Explosion(x, y, smoke);
+                break;
+            }
+        }
+        
     }
 
 
