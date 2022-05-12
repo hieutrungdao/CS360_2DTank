@@ -2,7 +2,7 @@ package com.cs360.entity;
 
 import com.cs360.main.GamePanel;
 
-import java.awt.*;
+import java.awt.Rectangle;
 import java.util.Random;
 
 public class Bot extends Entity {

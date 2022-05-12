@@ -2,7 +2,8 @@ package com.cs360.object;
 
 import com.cs360.main.GamePanel;
 
-import java.awt.*;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class GameObj {

@@ -2,9 +2,8 @@ package com.cs360.main;
 
 import com.cs360.effect.Effect;
 import com.cs360.effect.Explosion;
-import com.cs360.entity.Bullet;
 
-import java.awt.*;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 public class EffectManager {
@@ -27,7 +26,7 @@ public class EffectManager {
                 break;
             }
         }
-        
+
     }
 
 

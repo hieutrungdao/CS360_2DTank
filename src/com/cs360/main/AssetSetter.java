@@ -6,7 +6,10 @@ import com.cs360.object.Fence;
 import com.cs360.object.SandBag;
 import com.cs360.object.Tree;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class AssetSetter {
 
