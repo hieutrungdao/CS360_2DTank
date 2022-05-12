@@ -2,7 +2,7 @@ package com.cs360.effect;
 
 import java.awt.image.BufferedImage;
 
-public class Explosion extends Effect{
+public class Explosion extends Effect {
 
     public Explosion(int x, int y, boolean smoke) {
 

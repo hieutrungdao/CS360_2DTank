@@ -49,7 +49,7 @@ public class CollisionChecker {
     public void checkObj(Entity entity) {
 
         for (int i = 0; i < gp.obj.length; i++) {
-            if(gp.obj[i] != null && gp.obj[i].collision) {
+            if (gp.obj[i] != null && gp.obj[i].collision) {
 
                 entity.solidArea.x = entity.x;
                 entity.solidArea.y = entity.y;
@@ -90,7 +90,7 @@ public class CollisionChecker {
     public void checkBulletProof(Entity entity) {
 
         for (int i = 0; i < gp.obj.length; i++) {
-            if(gp.obj[i] != null && gp.obj[i].collision) {
+            if (gp.obj[i] != null && gp.obj[i].collision) {
 
                 entity.solidArea.x = entity.x;
                 entity.solidArea.y = entity.y;
@@ -128,7 +128,7 @@ public class CollisionChecker {
             }
             if (gp.obj[i].bulletProof == 2) {
                 gp.obj[i].endurance--;
-                if(gp.obj[i].endurance == 0){
+                if (gp.obj[i].endurance == 0) {
                     gp.effectM.addExplosion(gp.obj[i].x, gp.obj[i].y, true);
                     gp.obj[i] = null;
                 }
@@ -143,7 +143,7 @@ public class CollisionChecker {
 
         for (int i = 0; i < target.length; i++) {
 
-            if((target[i] != null) && (i != entity.id)) {
+            if ((target[i] != null) && (i != entity.id)) {
 
                 entity.solidArea.x = entity.x;
                 entity.solidArea.y = entity.y;

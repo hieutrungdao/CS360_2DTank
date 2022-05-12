@@ -18,7 +18,7 @@ public class EffectManager {
 
     }
 
-    public void addExplosion(int x, int y, boolean smoke){
+    public void addExplosion(int x, int y, boolean smoke) {
 
         for (int i = 0; i < effects.length; i++) {
             if (effects[i] == null) {
@@ -32,7 +32,7 @@ public class EffectManager {
 
     public void draw(Graphics2D g2) {
 
-        for (int i=0; i < effects.length; i++) {
+        for (int i = 0; i < effects.length; i++) {
 
             if (effects[i] != null) {
                 BufferedImage image = effects[i].getIndexImage();
@@ -40,9 +40,9 @@ public class EffectManager {
 
                 effects[i].effectCounter++;
 
-                if (effects[i].effectIndex == effects[i].images.length-1) {
+                if (effects[i].effectIndex == effects[i].images.length - 1) {
                     effects[i] = null;
-                } else if (effects[i].effectCounter > gp.FPS/6) {
+                } else if (effects[i].effectCounter > gp.FPS / 6) {
                     effects[i].effectCounter = 0;
                     effects[i].effectIndex++;
                 }

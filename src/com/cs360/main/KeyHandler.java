@@ -5,9 +5,8 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
 
-    GamePanel gp;
     public boolean upPressed, downPressed, leftPressed, rightPressed;
-
+    GamePanel gp;
     boolean showDebugText = false;
 
     public KeyHandler(GamePanel gp) {
@@ -15,20 +14,21 @@ public class KeyHandler implements KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 
     @Override
     public void keyPressed(KeyEvent e) {
 
         int code = e.getKeyCode();
 
-        if(code == KeyEvent.VK_UP)
+        if (code == KeyEvent.VK_UP)
             code = KeyEvent.VK_W;
-        if(code == KeyEvent.VK_LEFT)
+        if (code == KeyEvent.VK_LEFT)
             code = KeyEvent.VK_A;
-        if(code == KeyEvent.VK_DOWN)
+        if (code == KeyEvent.VK_DOWN)
             code = KeyEvent.VK_S;
-        if(code == KeyEvent.VK_RIGHT)
+        if (code == KeyEvent.VK_RIGHT)
             code = KeyEvent.VK_D;
 
         if (gp.getGameState() == gp.menuState)
@@ -56,22 +56,22 @@ public class KeyHandler implements KeyListener {
 
         int code = e.getKeyCode();
 
-        if(code == KeyEvent.VK_UP)
+        if (code == KeyEvent.VK_UP)
             code = KeyEvent.VK_W;
-        if(code == KeyEvent.VK_LEFT)
+        if (code == KeyEvent.VK_LEFT)
             code = KeyEvent.VK_A;
-        if(code == KeyEvent.VK_DOWN)
+        if (code == KeyEvent.VK_DOWN)
             code = KeyEvent.VK_S;
-        if(code == KeyEvent.VK_RIGHT)
+        if (code == KeyEvent.VK_RIGHT)
             code = KeyEvent.VK_D;
 
-        if(code == KeyEvent.VK_W)
+        if (code == KeyEvent.VK_W)
             upPressed = false;
-        if(code == KeyEvent.VK_A)
+        if (code == KeyEvent.VK_A)
             leftPressed = false;
-        if(code == KeyEvent.VK_S)
+        if (code == KeyEvent.VK_S)
             downPressed = false;
-        if(code == KeyEvent.VK_D)
+        if (code == KeyEvent.VK_D)
             rightPressed = false;
 
     }
@@ -140,7 +140,7 @@ public class KeyHandler implements KeyListener {
                 startGame(gp.ui.cmdNum);
             }
         }
-        if(code == KeyEvent.VK_ESCAPE) {
+        if (code == KeyEvent.VK_ESCAPE) {
             gp.setGameState(gp.menuState);
             gp.ui.cmdNum = 0;
         }
@@ -149,23 +149,23 @@ public class KeyHandler implements KeyListener {
 
     public void playState(int code) {
 
-        if(code == KeyEvent.VK_F)
+        if (code == KeyEvent.VK_F)
             gp.player.attack();
-        if(code == KeyEvent.VK_W)
+        if (code == KeyEvent.VK_W)
             upPressed = true;
-        if(code == KeyEvent.VK_A)
+        if (code == KeyEvent.VK_A)
             leftPressed = true;
-        if(code == KeyEvent.VK_S)
+        if (code == KeyEvent.VK_S)
             downPressed = true;
-        if(code == KeyEvent.VK_D)
+        if (code == KeyEvent.VK_D)
             rightPressed = true;
-        if(code == KeyEvent.VK_P)
+        if (code == KeyEvent.VK_P)
             gp.setGameState(gp.pauseState);
-        if(code == KeyEvent.VK_ESCAPE) {
+        if (code == KeyEvent.VK_ESCAPE) {
             gp.resetGame();
         }
 
-        if(code == KeyEvent.VK_T) {
+        if (code == KeyEvent.VK_T) {
             showDebugText = !showDebugText;
         }
 
@@ -175,15 +175,15 @@ public class KeyHandler implements KeyListener {
     }
 
     public void pauseState(int code) {
-        if(code == KeyEvent.VK_P)
+        if (code == KeyEvent.VK_P)
             gp.setGameState(gp.playState);
-        if(code == KeyEvent.VK_ESCAPE) {
+        if (code == KeyEvent.VK_ESCAPE) {
             gp.setGameState(gp.playState);
         }
     }
 
     public void finishState(int code) {
-        if(code == KeyEvent.VK_ESCAPE) {
+        if (code == KeyEvent.VK_ESCAPE) {
             gp.resetGame();
         }
     }
@@ -210,7 +210,7 @@ public class KeyHandler implements KeyListener {
             gp.ui.cmdNum = 1;
             gp.setGameState(gp.menuState);
         }
-        if(code == KeyEvent.VK_ESCAPE) {
+        if (code == KeyEvent.VK_ESCAPE) {
             gp.setGameState(gp.menuState);
             gp.ui.cmdNum = 1;
         }
@@ -218,7 +218,7 @@ public class KeyHandler implements KeyListener {
     }
 
     public void editState(int code) {
-        if(code == KeyEvent.VK_ESCAPE) {
+        if (code == KeyEvent.VK_ESCAPE) {
             gp.tileM.saveMap();
             gp.setGameState(gp.menuState);
         }

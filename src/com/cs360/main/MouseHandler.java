@@ -14,8 +14,8 @@ public class MouseHandler implements MouseListener {
 
     public void mouseClicked(MouseEvent e) {
         if (gp.getGameState() == gp.editState) {
-            int col = e.getX()/tileSize;
-            int row = e.getY()/tileSize;
+            int col = e.getX() / tileSize;
+            int row = e.getY() / tileSize;
             if (col < 5)
                 gp.tileM.getSelectedTile(col, row);
             else if (col > 5)

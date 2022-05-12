@@ -31,7 +31,7 @@ public class AssetSetter {
             InputStream is = getClass().getResourceAsStream(filePath);
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
-            for(String line; (line = br.readLine()) != null; ) {
+            for (String line; (line = br.readLine()) != null; ) {
                 String[] numbers = line.split(" ");
                 num = Integer.parseInt(numbers[0]);
                 x = Integer.parseInt(numbers[1]);

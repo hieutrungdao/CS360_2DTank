@@ -31,7 +31,7 @@ public class Bot extends Entity {
 
         direction = "down";
         color = "dark";
-        if (gp.getHardMode() == 0){
+        if (gp.getHardMode() == 0) {
             healthPoint = 2;
             speed = 2;
             fireRate = 40;
@@ -72,7 +72,7 @@ public class Bot extends Entity {
         if (actionCounter == actionNum) {
 
             Random random = new Random();
-            actionNum = random.nextInt(100)+25;
+            actionNum = random.nextInt(100) + 25;
 
             int d = random.nextInt(4);
 
@@ -91,7 +91,7 @@ public class Bot extends Entity {
 
             int fire = random.nextInt(100);
 
-            if(fire < fireRate) attack();
+            if (fire < fireRate) attack();
 
             actionCounter = 0;
         }
@@ -102,10 +102,9 @@ public class Bot extends Entity {
         gp.cChecker.checkObj(this);
         gp.cChecker.checkPlayer(this);
 
-        if (!collisionOn){
+        if (!collisionOn) {
             move();
-        }
-        else {
+        } else {
             actionCounter = actionNum - 1;
         }
     }

@@ -9,17 +9,16 @@ import java.io.IOException;
 
 public class Entity {
 
-    GamePanel gp;
     public int id = 99;
     public int x, y;
     public int speed;
     public String color;
-
     public String direction;
     public Rectangle solidArea;
     public boolean collisionOn = false;
     public BufferedImage up, down, left, right;
     public int healthPoint;
+    GamePanel gp;
 
     public Entity(GamePanel gp) {
         this.gp = gp;

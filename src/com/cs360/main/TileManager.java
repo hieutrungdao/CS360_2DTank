@@ -1,4 +1,5 @@
 package com.cs360.main;
+
 import com.cs360.tile.Tile;
 
 import java.awt.Color;
@@ -46,7 +47,7 @@ public class TileManager {
     public void loadMap(String filePath) {
 
         if (gp.systemIsMacOS) {
-            filePath = filePath.substring(0, filePath.length()-4) + "mac.txt";
+            filePath = filePath.substring(0, filePath.length() - 4) + "mac.txt";
         }
 
         try {
@@ -56,26 +57,26 @@ public class TileManager {
             int col = 0;
             int row = 0;
 
-            while(col < gp.maxScreenCol && row < gp.maxScreenRow) {
+            while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
 
                 String line = br.readLine();
                 String[] numbers = line.split(" ");
 
-                while(col < gp.maxScreenCol) {
+                while (col < gp.maxScreenCol) {
 
                     int num = Integer.parseInt(numbers[col]);
 
                     mapTileNum[col][row] = num;
                     col++;
                 }
-                if(col == gp.maxScreenCol) {
+                if (col == gp.maxScreenCol) {
                     col = 0;
                     row++;
                 }
             }
             br.close();
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -87,7 +88,7 @@ public class TileManager {
         int x = 0;
         int y = 0;
 
-        while (col < gp.maxScreenCol  && row < gp.maxScreenRow) {
+        while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
 
             int tileNum = mapTileNum[col][row];
 
@@ -109,34 +110,34 @@ public class TileManager {
         int row = 0;
         int tileSize = 50;
         int x = tileSize;
-        int y = 2*tileSize;
+        int y = 2 * tileSize;
 
         g2.setColor(Color.white);
 
         for (int i = 1; i <= 40; i++) {
-            g2.drawImage(tile[i-1].image, x, y, tileSize, tileSize, null);
+            g2.drawImage(tile[i - 1].image, x, y, tileSize, tileSize, null);
             g2.drawRect(x, y, tileSize, tileSize);
             y += tileSize;
             if (i % 10 == 0) {
-                y = 2*tileSize;
+                y = 2 * tileSize;
                 x += tileSize;
             }
         }
 
-        x = tileSize ;
+        x = tileSize;
         y = 14 * tileSize;
 
         g2.setFont(g2.getFont().deriveFont(30F));
         g2.drawString("Selected: ", x, y);
 
-        x = 4 * tileSize ;
-        y = 13 * tileSize + 2*tileSize/5;
+        x = 4 * tileSize;
+        y = 13 * tileSize + 2 * tileSize / 5;
         g2.drawImage(tile[tile2Edit].image, x, y, tileSize, tileSize, null);
 
         x = 6 * tileSize;
         y = 2 * tileSize;
 
-        while (col < gp.maxScreenCol  && row < gp.maxScreenRow) {
+        while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
 
             int tileNum = mapTileNum[col][row];
 
@@ -155,35 +156,35 @@ public class TileManager {
     }
 
     public void getSelectedTile(int col, int row) {
-        int tileIndex = ((col-1) * 10 + (row-2));
-        if(tileIndex >= 0 && tileIndex <= 39)
+        int tileIndex = ((col - 1) * 10 + (row - 2));
+        if (tileIndex >= 0 && tileIndex <= 39)
             tile2Edit = tileIndex;
     }
 
     public void editMap(int col, int row) {
         col = col - 6;
         row = row - 2;
-        if(col >= 0 && col < gp.maxScreenCol && row >= 0 && row < gp.maxScreenRow)
+        if (col >= 0 && col < gp.maxScreenCol && row >= 0 && row < gp.maxScreenRow)
             mapTileNum[col][row] = tile2Edit;
     }
 
     public void saveMap() {
 
         try {
-            BufferedWriter wr = new BufferedWriter(new FileWriter("res"+gp.mapPath));
+            BufferedWriter wr = new BufferedWriter(new FileWriter("res" + gp.mapPath));
 
             int col = 0;
             int row = 0;
 
-            while(col < gp.maxScreenCol && row < gp.maxScreenRow) {
+            while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
 
 
-                while(col < gp.maxScreenCol) {
+                while (col < gp.maxScreenCol) {
                     wr.write(String.valueOf(mapTileNum[col][row]));
                     wr.write(" ");
                     col++;
                 }
-                if(col == gp.maxScreenCol) {
+                if (col == gp.maxScreenCol) {
                     wr.write("\n");
                     col = 0;
                     row++;

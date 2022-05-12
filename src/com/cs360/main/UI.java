@@ -31,7 +31,7 @@ public class UI {
         try {
             InputStream is = getClass().getResourceAsStream("/font/kenvector_future.ttf");
             kenvector_future = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(is));
-        } catch (FontFormatException | IOException e){
+        } catch (FontFormatException | IOException e) {
             e.printStackTrace();
         }
 
@@ -53,7 +53,7 @@ public class UI {
 
     }
 
-    public void draw (Graphics2D g2) {
+    public void draw(Graphics2D g2) {
 
         this.g2 = g2;
 
@@ -62,7 +62,7 @@ public class UI {
 
         if (gp.getGameState() == gp.menuState)
             drawMenuScreen();
-        if(gp.getGameState() == gp.editState)
+        if (gp.getGameState() == gp.editState)
             drawEditMapScreen();
         if (gp.getGameState() == gp.playState)
             drawPlayScreen();
@@ -86,13 +86,13 @@ public class UI {
         int y = gp.tileSize * 2;
 
         g2.setColor(Color.gray);
-        g2.drawString(text,x+5,y+5);
+        g2.drawString(text, x + 5, y + 5);
 
         g2.setColor(Color.white);
-        g2.drawString(text,x ,y);
+        g2.drawString(text, x, y);
 
         y += gp.tileSize;
-        g2.drawImage(tankIcon, x + 3*gp.tileSize + gp.tileSize/2, y,
+        g2.drawImage(tankIcon, x + 3 * gp.tileSize + gp.tileSize / 2, y,
                 tankIcon.getWidth(), tankIcon.getHeight(), null);
 
         g2.setFont(g2.getFont().deriveFont(48F));
@@ -102,7 +102,7 @@ public class UI {
         y += 3 * gp.tileSize;
         g2.drawString(text, x, y);
         if (cmdNum == 0) {
-            g2.drawString(">", x-gp.tileSize,y);
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "Select Map";
@@ -110,7 +110,7 @@ public class UI {
         y += 2 * gp.tileSize;
         g2.drawString(text, x, y);
         if (cmdNum == 1) {
-            g2.drawString(">", x-gp.tileSize,y);
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "Map Editor";
@@ -118,7 +118,7 @@ public class UI {
         y += 2 * gp.tileSize;
         g2.drawString(text, x, y);
         if (cmdNum == 2) {
-            g2.drawString(">", x-gp.tileSize,y);
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "Quit";
@@ -126,7 +126,7 @@ public class UI {
         y += 2 * gp.tileSize;
         g2.drawString(text, x, y);
         if (cmdNum == 3) {
-            g2.drawString(">", x-gp.tileSize,y);
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
     }
@@ -139,13 +139,13 @@ public class UI {
         int y = gp.tileSize * 2;
 
         g2.setColor(Color.gray);
-        g2.drawString(text,x+5,y+5);
+        g2.drawString(text, x + 5, y + 5);
 
         g2.setColor(Color.white);
-        g2.drawString(text,x ,y);
+        g2.drawString(text, x, y);
 
         y += gp.tileSize;
-        g2.drawImage(tankIcon, x + 3*gp.tileSize + gp.tileSize/2, y,
+        g2.drawImage(tankIcon, x + 3 * gp.tileSize + gp.tileSize / 2, y,
                 tankIcon.getWidth(), tankIcon.getHeight(), null);
 
         g2.setFont(g2.getFont().deriveFont(48F));
@@ -155,7 +155,7 @@ public class UI {
         y += 3 * gp.tileSize;
         g2.drawString(text, x, y);
         if (cmdNum == 0) {
-            g2.drawString(">", x-gp.tileSize,y);
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "Medium";
@@ -163,7 +163,7 @@ public class UI {
         y += 2 * gp.tileSize;
         g2.drawString(text, x, y);
         if (cmdNum == 1) {
-            g2.drawString(">", x-gp.tileSize,y);
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "Hard";
@@ -171,7 +171,7 @@ public class UI {
         y += 2 * gp.tileSize;
         g2.drawString(text, x, y);
         if (cmdNum == 2) {
-            g2.drawString(">", x-gp.tileSize,y);
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "Back";
@@ -179,7 +179,7 @@ public class UI {
         y += 2 * gp.tileSize;
         g2.drawString(text, x, y);
         if (cmdNum == 3) {
-            g2.drawString(">", x-gp.tileSize,y);
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
     }
@@ -192,13 +192,13 @@ public class UI {
         int y = gp.tileSize * 2;
 
         g2.setColor(Color.gray);
-        g2.drawString(text,x+5,y+5);
+        g2.drawString(text, x + 5, y + 5);
 
         g2.setColor(Color.white);
-        g2.drawString(text,x ,y);
+        g2.drawString(text, x, y);
 
         y += gp.tileSize;
-        g2.drawImage(tankIcon, x + 3*gp.tileSize + gp.tileSize/2, y,
+        g2.drawImage(tankIcon, x + 3 * gp.tileSize + gp.tileSize / 2, y,
                 tankIcon.getWidth(), tankIcon.getHeight(), null);
 
         g2.setFont(g2.getFont().deriveFont(48F));
@@ -208,7 +208,7 @@ public class UI {
         y += 3 * gp.tileSize;
         g2.drawString(text, x, y);
         if (cmdNum == 0) {
-            g2.drawString(">", x-gp.tileSize,y);
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "Map 2";
@@ -216,7 +216,7 @@ public class UI {
         y += 2 * gp.tileSize;
         g2.drawString(text, x, y);
         if (cmdNum == 1) {
-            g2.drawString(">", x-gp.tileSize,y);
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "Map 3";
@@ -224,7 +224,7 @@ public class UI {
         y += 2 * gp.tileSize;
         g2.drawString(text, x, y);
         if (cmdNum == 2) {
-            g2.drawString(">", x-gp.tileSize,y);
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "Back";
@@ -232,7 +232,7 @@ public class UI {
         y += 2 * gp.tileSize;
         g2.drawString(text, x, y);
         if (cmdNum == 3) {
-            g2.drawString(">", x-gp.tileSize,y);
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
     }
@@ -247,15 +247,15 @@ public class UI {
         int y = 10;
 
         g2.setFont(g2.getFont().deriveFont(30F));
-        g2.drawString("HP: ", 30,50 );
+        g2.drawString("HP: ", 30, 50);
         for (int i = 0; i < gp.player.healthPoint; i++) {
             g2.drawImage(heartIcon, x, y,
                     heartIcon.getWidth(), heartIcon.getHeight(), null);
             x += heartIcon.getWidth();
         }
 
-        playTime += (double)1/gp.FPS;
-        g2.drawString("Time: " + dFormat.format(playTime), 1300,50 );
+        playTime += (double) 1 / gp.FPS;
+        g2.drawString("Time: " + dFormat.format(playTime), 1300, 50);
 
     }
 
@@ -264,7 +264,7 @@ public class UI {
         String text = "PAUSED";
         g2.setFont(g2.getFont().deriveFont(80F));
 
-        int y = gp.screenHigh/2;
+        int y = gp.screenHigh / 2;
         int x = getXforCenteredText(text);
 
         g2.drawString(text, x, y);
@@ -280,15 +280,15 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(50F));
 
         text = "Mission Completed!";
-        textLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        x = gp.screenWidth/2 - textLength/2;
-        y = gp.screenHigh/2 - (gp.tileSize*3);
+        textLength = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+        x = gp.screenWidth / 2 - textLength / 2;
+        y = gp.screenHigh / 2 - (gp.tileSize * 3);
         g2.drawString(text, x, y);
 
         text = "Go!";
-        textLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        x = gp.screenWidth/2 - textLength/2;
-        y = gp.screenHigh/2 - (gp.tileSize*2);
+        textLength = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+        x = gp.screenWidth / 2 - textLength / 2;
+        y = gp.screenHigh / 2 - (gp.tileSize * 2);
         g2.drawString(text, x, y);
 
     }
@@ -303,16 +303,16 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(80F));
 
         text = "Mission Failed!";
-        textLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        x = gp.screenWidth/2 - textLength/2;
-        y = gp.screenHigh/2 - (gp.tileSize);
+        textLength = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+        x = gp.screenWidth / 2 - textLength / 2;
+        y = gp.screenHigh / 2 - (gp.tileSize);
         g2.drawString(text, x, y);
 
     }
 
     public int getXforCenteredText(String text) {
-        return (gp.screenWidth/2 -
-                (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth()/2);
+        return (gp.screenWidth / 2 -
+                (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth() / 2);
 
     }
 

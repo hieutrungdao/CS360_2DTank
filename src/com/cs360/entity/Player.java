@@ -6,7 +6,7 @@ import com.cs360.main.KeyHandler;
 import java.awt.*;
 
 
-public class Player extends Entity{
+public class Player extends Entity {
 
     KeyHandler keyH;
 
@@ -44,10 +44,10 @@ public class Player extends Entity{
 
     public void getPlayerImage() {
 
-            up = loadImage("/tank/tank_red_up.png");
-            down = loadImage("/tank/tank_red_down.png");
-            left = loadImage("/tank/tank_red_left.png");
-            right = loadImage("/tank/tank_red_right.png");
+        up = loadImage("/tank/tank_red_up.png");
+        down = loadImage("/tank/tank_red_down.png");
+        left = loadImage("/tank/tank_red_left.png");
+        right = loadImage("/tank/tank_red_right.png");
 
     }
 
@@ -65,14 +65,11 @@ public class Player extends Entity{
 
         if (keyH.upPressed) {
             direction = "up";
-        }
-        else if (keyH.downPressed) {
+        } else if (keyH.downPressed) {
             direction = "down";
-        }
-        else if (keyH.leftPressed) {
+        } else if (keyH.leftPressed) {
             direction = "left";
-        }
-        else if (keyH.rightPressed) {
+        } else if (keyH.rightPressed) {
             direction = "right";
         }
 

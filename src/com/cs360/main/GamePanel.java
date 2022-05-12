@@ -13,7 +13,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Objects;
 
-public class GamePanel extends JPanel implements Runnable{
+public class GamePanel extends JPanel implements Runnable {
 
     public final int tileSize = 64; // 64x64
     public final int maxScreenCol = 24;
@@ -22,13 +22,21 @@ public class GamePanel extends JPanel implements Runnable{
     public final int screenHigh = tileSize * maxScreenRow; // 896
 
     public final int FPS = 60;
+    public final int menuState = 0;
+    public final int playState = 1;
+    public final int pauseState = 2;
+    public final int winState = 3;
+    public final int loseState = 4;
+    public final int editState = 5;
+    public final int selectMapState = 6;
+    public final int selectHardState = 7;
 
     public String mapPath = "/map/map00.txt"; // Đường dẫn mặc định để tải map
     public String objPath = "/map/obj00.txt"; // Đường dẫn mặc định để tải object
 
     Thread gameThread;
-
     KeyHandler keyH = new KeyHandler(this);
+
     MouseHandler mouseH = new MouseHandler(this);
     TileManager tileM = new TileManager(this);
     Sound music = new Sound();
@@ -46,24 +54,12 @@ public class GamePanel extends JPanel implements Runnable{
 
     // Thay đổi game state sẽ thay đổi ui, draw, keyH, ..
     private int gameState;
-    public final int menuState = 0;
-    public final int playState = 1;
-    public final int pauseState = 2;
-    public final int winState = 3;
-    public final int loseState = 4;
-    public final int editState = 5;
-    public final int selectMapState = 6;
-    public final int selectHardState = 7;
-
     // Tốc độ bắn và tốc độ chạy cho bot tùy theo độ khó
     private int hardMode = 1;
-
     // Delay cho sound
     private boolean delayOn = false;
     private int delayCounter = 0;
-
     private boolean endSound = true;
-
     // macOS dùng file map txt khác với Windows
     public boolean systemIsMacOS = false;
 
@@ -81,11 +77,11 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void setupGame() {
 
-        if(Objects.equals(System.getProperty("os.name"), "Mac OS X")) systemIsMacOS = true;
+        if (Objects.equals(System.getProperty("os.name"), "Mac OS X")) systemIsMacOS = true;
         tileM.loadMap(mapPath);
         playMusic(0);
         gameState = menuState;
-        
+
     }
 
     public void resetGame() {
@@ -112,7 +108,7 @@ public class GamePanel extends JPanel implements Runnable{
     @Override
     public void run() {
         // Update và vẽ lại màn hình mỗi 1/60 s
-        double drawInterval = (double) 1000000000/FPS;
+        double drawInterval = (double) 1000000000 / FPS;
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
@@ -120,7 +116,7 @@ public class GamePanel extends JPanel implements Runnable{
         double startTimer = 0;
         int drawCount = 0;
 
-        while(gameThread != null) {
+        while (gameThread != null) {
 
             currentTime = System.nanoTime();
             delta += (currentTime - lastTime) / drawInterval;
@@ -143,7 +139,7 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
 
-    public void update(){
+    public void update() {
 
         if (gameState == playState) {
 
@@ -163,7 +159,7 @@ public class GamePanel extends JPanel implements Runnable{
             }
 
             // Chạy sound effect đang được delay
-            if(delayOn) {
+            if (delayOn) {
                 delayCounter++;
                 if (delayCounter > FPS) {
                     playSoundEffect(3);
@@ -174,25 +170,25 @@ public class GamePanel extends JPanel implements Runnable{
 
         }
 
-        if (endSound){
+        if (endSound) {
             if (gameState == winState) {
                 playSoundEffect(4);
                 endSound = false;
             }
-            if (gameState == loseState){
+            if (gameState == loseState) {
                 playSoundEffect(5);
                 endSound = false;
             }
         }
     }
 
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
 
         // Vẽ lại màn hình sau khi update
 
         super.paintComponent(g);
 
-        Graphics2D g2 = (Graphics2D)g;
+        Graphics2D g2 = (Graphics2D) g;
 
         long drawStart = 0;
         if (keyH.showDebugText) {
@@ -205,8 +201,7 @@ public class GamePanel extends JPanel implements Runnable{
 
             ui.draw(g2);
 
-        }
-        else if (gameState == editState){
+        } else if (gameState == editState) {
 
             tileM.draw2Edit(g2);
 
@@ -251,10 +246,14 @@ public class GamePanel extends JPanel implements Runnable{
             int y = 700;
             int lineHeight = 25;
 
-            g2.drawString("X: " + player.x, x, y); y += lineHeight;
-            g2.drawString("Y: " + player.y, x, y); y += lineHeight;
-            g2.drawString("Col: " + (player.x/tileSize), x, y); y += lineHeight;
-            g2.drawString("Row: " + (player.y/tileSize), x, y); y += lineHeight;
+            g2.drawString("X: " + player.x, x, y);
+            y += lineHeight;
+            g2.drawString("Y: " + player.y, x, y);
+            y += lineHeight;
+            g2.drawString("Col: " + (player.x / tileSize), x, y);
+            y += lineHeight;
+            g2.drawString("Row: " + (player.y / tileSize), x, y);
+            y += lineHeight;
             g2.drawString("Draw Time: " + passed, x, y);
         }
 
@@ -265,7 +264,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void playMusic(int i) {
 
         music.setFile(i);
-        music.setVolume((float)0.1);
+        music.setVolume((float) 0.1);
         music.play();
         music.loop();
 
@@ -287,8 +286,8 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void checkWinCondition() {
-        boolean empty  = true;
-        for (Bot value: bot) {
+        boolean empty = true;
+        for (Bot value : bot) {
             if (value != null) {
                 empty = false;
                 break;
@@ -299,20 +298,20 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
 
+    public int getGameState() {
+        return gameState;
+    }
+
     public void setGameState(int gameState) {
         this.gameState = gameState;
     }
 
-    public int getGameState(){
-        return gameState;
-    }
-
-    public void setHardMode(int hardMode){
-        this.hardMode = hardMode;
-        player.setHardMode(hardMode);
-    }
-
     public int getHardMode() {
         return hardMode;
+    }
+
+    public void setHardMode(int hardMode) {
+        this.hardMode = hardMode;
+        player.setHardMode(hardMode);
     }
 }
