@@ -48,6 +48,7 @@ public class TileManager {
 
         if (gp.systemIsMacOS) {
             filePath = filePath.substring(0, filePath.length() - 4) + "mac.txt";
+            gp.mapPath = filePath;
         }
 
         try {
