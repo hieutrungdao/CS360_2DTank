@@ -20,8 +20,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int maxScreenRow = 14;
     public final int screenWidth = tileSize * maxScreenCol; // 1536
     public final int screenHigh = tileSize * maxScreenRow; // 896
-
     public final int FPS = 60;
+
     public final int menuState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
@@ -31,31 +31,32 @@ public class GamePanel extends JPanel implements Runnable {
     public final int selectMapState = 6;
     public final int selectHardState = 7;
 
+    // Thay đổi game state sẽ thay đổi ui, draw, keyH, ..
+    private int gameState;
+    // Tốc độ bắn và tốc độ chạy cho bot tùy theo độ khó
+    private int hardMode = 1;
+
     public String mapPath = "/map/map00.txt"; // Đường dẫn mặc định để tải map
     public String objPath = "/map/obj00.txt"; // Đường dẫn mặc định để tải object
 
     Thread gameThread;
     KeyHandler keyH = new KeyHandler(this);
-
     MouseHandler mouseH = new MouseHandler(this);
-    TileManager tileM = new TileManager(this);
     Sound music = new Sound();
     Sound effect = new Sound();
 
     public UI ui = new UI(this);
     public EffectManager effectM = new EffectManager(this);
+    public TileManager tileM = new TileManager(this);
     public CollisionChecker cChecker = new CollisionChecker(this); // Kiểm tra các vật thể giao nhau
     public AssetSetter aSetter = new AssetSetter(this); // Khởi tạo bot và object
 
     public Player player = new Player(this, keyH);
-    public GameObj[] obj = new GameObj[64];
     public Bot[] bot = new Bot[16];
     public Bullet[] bullet = new Bullet[128];
+    public GameObj[] obj = new GameObj[64];
 
-    // Thay đổi game state sẽ thay đổi ui, draw, keyH, ..
-    private int gameState;
-    // Tốc độ bắn và tốc độ chạy cho bot tùy theo độ khó
-    private int hardMode = 1;
+
     // Delay cho sound
     private boolean delayOn = false;
     private int delayCounter = 0;
@@ -69,9 +70,9 @@ public class GamePanel extends JPanel implements Runnable {
         this.setPreferredSize(new Dimension(screenWidth, screenHigh));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
+        this.setFocusable(true);
         this.addKeyListener(keyH);
         this.addMouseListener(mouseH);
-        this.setFocusable(true);
 
     }
 
@@ -80,7 +81,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (Objects.equals(System.getProperty("os.name"), "Mac OS X")) systemIsMacOS = true;
         tileM.loadMap(mapPath);
         playMusic(0);
-        gameState = menuState;
+        setGameState(menuState);
 
     }
 
@@ -195,8 +196,8 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         if (gameState == menuState
-                || gameState == selectMapState
-                || gameState == selectHardState) {
+            || gameState == selectMapState
+            || gameState == selectHardState) {
 
             ui.draw(g2);
 
@@ -260,6 +261,19 @@ public class GamePanel extends JPanel implements Runnable {
 
     }
 
+    public void checkWinCondition() {
+        boolean empty = true;
+        for (Bot value : bot) {
+            if (value != null) {
+                empty = false;
+                break;
+            }
+        }
+        if (empty) {
+            setGameState(winState);
+        }
+    }
+
     public void playMusic(int i) {
 
         music.setFile(i);
@@ -280,21 +294,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     }
 
-    public void playDelayEffect() {
+    public void playDelaySoundEffect() {
         delayOn = true;
-    }
-
-    public void checkWinCondition() {
-        boolean empty = true;
-        for (Bot value : bot) {
-            if (value != null) {
-                empty = false;
-                break;
-            }
-        }
-        if (empty) {
-            setGameState(winState);
-        }
     }
 
     public int getGameState() {

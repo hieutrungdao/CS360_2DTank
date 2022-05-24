@@ -115,7 +115,7 @@ public class KeyHandler implements KeyListener {
         gp.stopMusic();
         gp.playMusic(1);
         gp.playSoundEffect(2);
-        gp.playDelayEffect();
+        gp.playDelaySoundEffect();
     }
 
     public void selectHardState(int code) {
