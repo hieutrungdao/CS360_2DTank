@@ -29,7 +29,6 @@ public class EffectManager {
 
     }
 
-
     public void draw(Graphics2D g2) {
 
         for (int i = 0; i < effects.length; i++) {
