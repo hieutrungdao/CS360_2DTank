@@ -27,5 +27,4 @@ The game simulates a battle of tanks. The player controls his tank with the up, 
 |[Nguyen Trung Kien](https://github.com/bachdang2k) |Entity, CollisionChecker |
 
 ## References
-https://github.com/bachdang2k
 Game assets: <https://opengameart.org/content/top-down-tanks-redux>
