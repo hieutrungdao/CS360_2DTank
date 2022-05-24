@@ -20,12 +20,12 @@ The game simulates a battle of tanks. The player controls his tank with the up, 
 
 |Name |Task     |
 | ------        |:-----------------------------:  |
-|[Pham Tran Tri](./exps/default/nano.py) |Tile, TileManager  |
-|[Doan Dinh Cuong](./exps/default/yolox_tiny.py) |UI, Sound, KeyHandler, MouseHandler |
-|[Ngo Truong Minh](./exps/default/nano.py) |GameObj, AssetSetter, Effect, EffectManager  |
-|[Dao Trung Hieu](./exps/default/yolox_tiny.py) |GamePanel, Programming Design |
-|[Nguyen Trung Kien](./exps/default/yolox_tiny.py) |Entity, CollisionChecker |
+|[Pham Tran Tri](https://github.com/tripro16102000) |Tile, TileManager  |
+|[Doan Dinh Cuong](https://github.com/anonychick11111111111) |UI, Sound, KeyHandler, MouseHandler |
+|[Ngo Truong Minh](https://github.com/ntm2690) |GameObj, AssetSetter, Effect, EffectManager  |
+|[Dao Trung Hieu](https://github.com/hieutrungdao) |GamePanel, Programming Design |
+|[Nguyen Trung Kien](https://github.com/bachdang2k) |Entity, CollisionChecker |
 
 ## References
-
+https://github.com/bachdang2k
 Game assets: <https://opengameart.org/content/top-down-tanks-redux>
