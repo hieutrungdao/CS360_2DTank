@@ -11,7 +11,7 @@ public class GameObj {
     public BufferedImage image;
     public boolean collision = false;
     public int bulletProof = 0;
-    public int endurance = 5;
+    public int endurance = 3;
     public int x, y;
     public Rectangle solidArea = new Rectangle(0, 0, 64, 64);
 
